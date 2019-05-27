@@ -33,8 +33,12 @@ namespace ContosoUniversity.Controllers
                 return NotFound();
             }
 
-            var student = await _context.Students
-                .FirstOrDefaultAsync(m => m.ID == id);
+            //var student = await _context.Students
+            //    .FirstOrDefaultAsync(m => m.ID == id);
+            // Include 和 ThenInclude 方法使上下文加载 Student.Enrollments 导航属性，并在每个注册中加载 Enrollment.Course 导航属性。
+            // 对于返回的实体未在当前上下文生存期中更新的情况，AsNoTracking 方法将会提升性能。 
+            var student = await _context.Students.Include(s => s.Enrollments).ThenInclude(e => e.Course)
+                .AsNoTracking().FirstOrDefaultAsync(m => m.ID == id);
             if (student == null)
             {
                 return NotFound();
