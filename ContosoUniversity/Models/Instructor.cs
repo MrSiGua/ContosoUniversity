@@ -22,6 +22,11 @@ namespace ContosoUniversity.Models
         [StringLength(50)]
         public string FirstMidName { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Hire Date")]
+        public DateTime HireDate { get; set; }
+
         [Display(Name = "Full Name")]
         public string FullName
         {
