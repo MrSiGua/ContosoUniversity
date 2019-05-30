@@ -54,7 +54,7 @@ namespace ContosoUniversity.Controllers
                 {
                     await _context.Entry(enrollment).Reference(x => x.Student).LoadAsync();
                 }
-                viewModel.Enrollments = selectedCourse.Enrollments();
+                viewModel.Enrollments = selectedCourse.Enrollments;
             }
 
             return View(viewModel);
