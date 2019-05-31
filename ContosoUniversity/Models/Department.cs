@@ -25,6 +25,10 @@ namespace ContosoUniversity.Models
 
         public int? InstructorID { get; set; }
 
+        //该属性称为 Timestamp，因为 SQL Server 的之前版本在 SQL rowversion 类型将其替换之前使用 SQL timestamp 数据类型。
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
         public Instructor Administrator { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
