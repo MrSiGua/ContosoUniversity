@@ -9,9 +9,11 @@ using ContosoUniversity.Models;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models.SchoolViewModels;
 using System.Data.Common;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ContosoUniversity.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly SchoolContext _context;

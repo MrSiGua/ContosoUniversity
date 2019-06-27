@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using ContosoUniversity.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using ContosoUniversity.Areas.Identity.Data;
 
 namespace ContosoUniversity.Data
 {
-    public class SchoolContext : DbContext
+    public class SchoolContext : IdentityDbContext<ContosoUniversityUser>
     {
         public SchoolContext(DbContextOptions<SchoolContext> options) : base(options)
         { }
@@ -23,6 +25,8 @@ namespace ContosoUniversity.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Course>().ToTable("Course");
             modelBuilder.Entity<Enrollment>().ToTable("Enrollment");
             modelBuilder.Entity<Student>().ToTable("Student");
